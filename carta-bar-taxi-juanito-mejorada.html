@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carta Bar Taxi Juanito</title>
+    <style>
+        :root {
+            --paper: #fffdf7;
+            --ink: #242424;
+            --muted: #66625b;
+            --line: #dfd7c8;
+            --taxi: #664e0b;
+            --red: #b93a32;
+            --olive: #5f6432;
+            --soft: #f7f1e5;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            color: var(--ink);
+            font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+            line-height: 1.45;
+            background:
+                linear-gradient(180deg, rgba(244, 197, 66, 0.12), rgba(185, 58, 50, 0.06)),
+                var(--paper);
+        }
+
+        .page {
+            width: min(1120px, calc(100% - 32px));
+            margin: 28px auto;
+            padding: clamp(22px, 4vw, 46px);
+            background: rgba(255, 253, 247, 0.96);
+            border: 1px solid var(--line);
+            box-shadow: 0 18px 46px rgba(36, 36, 36, 0.10);
+        }
+
+        header {
+            display: grid;
+            gap: 10px;
+            margin-bottom: 34px;
+            text-align: center;
+        }
+
+        .brand-mark {
+            justify-self: center;
+            padding: 6px 14px;
+            color: #1f1f1f;
+            background: var(--taxi);
+            border: 2px solid #1f1f1f;
+            font-weight: 800;
+            letter-spacing: 0;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            margin: 0;
+            color: var(--taxi);
+            font-size: clamp(2rem, 5vw, 4rem);
+            line-height: 1;
+            text-transform: uppercase;
+        }
+
+        .subtitle {
+            margin: 0;
+            color: var(--muted);
+            font-size: 1.05rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 26px 34px;
+        }
+
+        .section {
+            break-inside: avoid;
+        }
+
+        .section.full {
+            grid-column: 1 / -1;
+        }
+
+        h2 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 0 0 14px;
+            padding-bottom: 8px;
+            color: var(--red);
+            border-bottom: 2px solid var(--taxi);
+            font-size: 1.18rem;
+            line-height: 1.2;
+            text-transform: uppercase;
+        }
+
+        .subsection-title {
+            margin-top: 26px;
+        }
+
+        .dish {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) auto;
+            gap: 14px;
+            padding: 7px 0;
+            border-bottom: 1px dotted var(--line);
+        }
+
+        .dish:last-child {
+            border-bottom: 0;
+        }
+
+        .name {
+            min-width: 0;
+            font-weight: 750;
+        }
+
+        .description {
+            grid-column: 1 / -1;
+            margin-top: -7px;
+            color: var(--muted);
+            font-size: 0.92rem;
+        }
+
+        .price {
+            color: var(--red);
+            font-weight: 800;
+            white-space: nowrap;
+        }
+
+        .specialty {
+            margin-top: 2px;
+            padding: 18px 20px;
+            background: var(--soft);
+            border: 2px solid var(--taxi);
+        }
+
+        .specialty h2 {
+            margin-bottom: 8px;
+            border-bottom: 0;
+            color: var(--olive);
+        }
+
+        .specialty p {
+            margin: 0;
+            color: var(--ink);
+            font-size: 1rem;
+        }
+
+        .footer {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px 24px;
+            margin-top: 32px;
+            padding-top: 18px;
+            border-top: 2px solid var(--line);
+            text-align: center;
+            font-size: 1.05rem;
+            font-weight: 650;
+        }
+
+        .footer p {
+            margin: 0;
+        }
+
+        .footer strong,
+        .footer a {
+            color: var(--red);
+        }
+
+        .footer a {
+            font-weight: 800;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+        }
+
+        .social-icon {
+            width: 22px;
+            height: 22px;
+            object-fit: contain;
+            display: inline-block;
+        }
+
+        .credits {
+            flex-basis: 100%;
+            color: var(--muted);
+            font-size: 0.72rem;
+            font-weight: 500;
+            line-height: 1.35;
+        }
+
+        .credits a {
+            color: var(--muted);
+            font-weight: 650;
+        }
+
+        @media (max-width: 760px) {
+            .page {
+                width: min(100% - 18px, 680px);
+                margin: 9px auto;
+                padding: 20px 16px;
+                box-shadow: none;
+            }
+
+            .menu-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .dish {
+                gap: 10px;
+            }
+        }
+
+        @media print {
+            body {
+                background: #fff;
+            }
+
+            .page {
+                width: 100%;
+                margin: 0;
+                padding: 12mm;
+                border: 0;
+                box-shadow: none;
+            }
+
+            .menu-grid {
+                gap: 18px 28px;
+            }
+
+            h1 {
+                font-size: 30pt;
+            }
+
+            h2 {
+                font-size: 12pt;
+            }
+
+            .dish {
+                padding: 4px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="page">
+        <header>
+            <!-- <div class="brand-mark">Bar Taxi</div> --><!-- IGNORE -->
+            <h1>Bar Taxi</h1>
+            <p class="subtitle">Nuestra carta</p>
+        </header>
+
+        <div class="menu-grid">
+            <section class="section">
+                <h2>🍢 Entrantes y Tapas</h2>
+                <div class="dish"><span class="name">Calamar nacional a la plancha</span><span class="price">16,00 €</span></div>
+                <div class="dish"><span class="name">Pata entera de pulpo a la gallega</span><span class="price">14,00 €</span></div>
+                <div class="dish"><span class="name">Sepia entera fresca</span><span class="price">14,00 €</span></div>
+                <div class="dish"><span class="name">Perol de gambas y calamar al ajillo</span><span class="price">12,00 €</span></div>
+                <div class="dish"><span class="name">Tabla de paté de pato con mermelada</span><span class="price">10,00 €</span></div>
+                <div class="dish"><span class="name">Tabla de embutidos ibéricos</span><span class="price">10,00 €</span></div>
+                <div class="dish"><span class="name">Gambas saladas</span><span class="price">9,00 €</span></div>
+                <div class="dish"><span class="name">Queso en tempura con mermelada</span><span class="price">8,00 €</span></div>
+                <div class="dish"><span class="name">Capellán con tomate</span><span class="price">8,00 €</span></div>
+                <div class="dish"><span class="name">Patatas bravas</span><span class="price">7,00 €</span></div>
+                <div class="dish"><span class="name">Flor de alcachofas con foie y miel</span><span class="price">5,00 €</span></div>
+                <div class="dish"><span class="name">Croquetas caseras</span><span class="price">2,50 €</span></div>
+                <div class="dish"><span class="name">Caballitos caseros</span><span class="price">2,50 €</span></div>
+                <div class="dish"><span class="name">Marinera o marinero</span><span class="price">2,50 €</span></div>
+                <div class="dish"><span class="name">Gambas rojas a la plancha</span><span class="price">2,50 €</span></div>
+                <div class="dish"><span class="name">Vieiras con salsa verde</span><span class="price">2,50 €</span></div>
+                <div class="dish"><span class="name">Ensaladilla rusa</span><span class="price">2,00 €</span></div>
+                <div class="dish"><span class="name">Piruletas de gambas a la plancha</span><span class="price">2,00 €</span></div>
+                <div class="dish"><span class="name">Twister crujiente de gambas</span><span class="price">2,00 €</span></div>
+            </section>
+
+            <section class="section">
+                <h2>🥩 Platos Principales</h2>
+                <div class="dish"><span class="name">Entrecot de ternera</span><span class="price">14,00 €</span></div>
+                <div class="dish"><span class="name">Pescado fresco de temporada</span><span class="price">14,00 €</span></div>
+                <div class="dish"><span class="name">Bacalao rebozado a la miel</span><span class="price">12,00 €</span></div>
+                <div class="dish"><span class="name">Secreto a la plancha con reducción de vino</span><span class="price">12,00 €</span></div>
+                <div class="dish"><span class="name">Carrillera en salsa</span><span class="price">12,00 €</span></div>
+                <div class="dish"><span class="name">Fritura de pescado (2 pers.)</span><span class="price">12,00 €</span></div>
+                <div class="dish"><span class="name">Plato combinado de lomo o pollo</span><span class="price">9,00 €</span></div>
+
+                <h2 class="subsection-title">🍲 Primeros Platos</h2>
+                <div class="dish"><span class="name">Cazuela de patatas, jamón, pimientos y huevo</span><span class="price">6,00 € / 9,00 €</span></div>
+                <div class="dish"><span class="name">Pasta del día</span><span class="price">6,00 €</span></div>
+                <div class="dish"><span class="name">Huevo al plato</span><span class="price">6,00 €</span></div>
+                <div class="dish"><span class="name">Consomé con pelota</span><span class="price">4,00 €</span></div>
+
+                <h2 class="subsection-title">🥗 Ensaladas Frescas</h2>
+                <div class="dish"><span class="name">Ensalada Huerta (2 pers.)</span><span class="price">10,00 €</span><span class="description">Lechuga, tomate, maíz, espárragos y huevo duro.</span></div>
+                <div class="dish"><span class="name">Ensalada Tibia (Indiv.)</span><span class="price">6,00 €</span><span class="description">Lechuga, verduras a la plancha, queso de rulo y salsa PX.</span></div>
+                <div class="dish"><span class="name">Ensalada Italiana</span><span class="price">10,00 €</span><span class="description">Tomate negro, queso mozzarella, aceite y salsa de Módena.</span></div>
+                <div class="dish"><span class="name">Ensalada César</span><span class="price">10,00 €</span><span class="description">Lechuga, picatostes, pollo, queso y salsa césar.</span></div>
+            </section>
+
+            <section class="section">
+                <h2>🥖 Bocadillos de la Casa</h2>
+                <div class="dish"><span class="name">Abel</span><span class="price">6,50 €</span><span class="description">Ternera, jamón, pimiento, tomate y queso.</span></div>
+                <div class="dish"><span class="name">Óscar</span><span class="price">6,00 €</span><span class="description">Lomo fresco, tomate, queso y mahonesa.</span></div>
+                <div class="dish"><span class="name">Marquitos</span><span class="price">6,00 €</span><span class="description">Pechuga de pollo y mantequilla.</span></div>
+                <div class="dish"><span class="name">Noelia</span><span class="price">6,00 €</span><span class="description">Lomo fresco, tortilla y mahonesa.</span></div>
+                <div class="dish"><span class="name">Paula</span><span class="price">6,00 €</span><span class="description">Patatas montón, huevo y bacon.</span></div>
+                <div class="dish"><span class="name">María</span><span class="price">6,00 €</span><span class="description">Tortilla de atún y pimientos.</span></div>
+            </section>
+
+            <section class="section">
+                <h2>🍔 Hamburguesas</h2>
+                <div class="dish"><span class="name">Angus</span><span class="price">9,00 €</span><span class="description">Carne de Angus, bacon, huevo, queso, lechuga y tomate.</span></div>
+                <div class="dish"><span class="name">Pollo</span><span class="price">7,00 €</span><span class="description">Carne de pollo rebozada, salsa de queso cheddar y bacon.</span></div>
+                <div class="dish"><span class="name">Mixta</span><span class="price">6,00 €</span><span class="description">Carne de cerdo, lechuga, tomate y cebolla crujiente.</span></div>
+
+
+            </section>
+
+            <section class="section">
+                <h2>🍞 Tostadas</h2>
+                <div class="dish"><span class="name">Salmón con aguacate y tomate</span><span class="price">5,50 €</span></div>
+                <div class="dish"><span class="name">Catalana: Jamón, aceite y tomate</span><span class="price">5,00 €</span></div>
+                <div class="dish"><span class="name">Sobrasada y queso de rulo</span><span class="price">5,00 €</span></div>
+                <div class="dish"><span class="name">Atún, pimientos y anchoas</span><span class="price">5,00 €</span></div>
+                <div class="dish"><span class="name">Queso frito, tomate y pimientos</span><span class="price">5,00 €</span></div>
+                <div class="dish"><span class="name">Aceite, queso manchego y jamón</span><span class="price">5,00 €</span></div>
+                <div class="dish"><span class="name">Lacón con pimienta negra y limón</span><span class="price">5,00 €</span></div>
+            </section>
+            <section class="section">
+                <h2>🥪 Sándwiches y Montaditos</h2>
+                <div class="dish"><span class="name">Sándwich Mar</span><span class="price">6,50 €</span><span class="description">Salmón, atún y rodajas de tomate.</span></div>
+                <div class="dish"><span class="name">Sándwich Mixto</span><span class="price">5,50 €</span><span class="description">Jamón de York y queso.</span></div>
+                <div class="dish"><span class="name">Sándwich Vegetal</span><span class="price">5,50 €</span><span class="description">Lechuga, tomate, huevo duro, mahonesa y atún.</span></div>
+                <div class="dish"><span class="name">Montaditos Variados (1 ing.)</span><span class="price">2,00 €</span><span class="description">Salchicha, morcilla, jamón, sobrasada, queso, etc.</span></div>
+            </section>
+
+            <section class="section full specialty">
+                <h2>👨‍🍳 Grandes Especialidades (Por Encargo)</h2>
+                <p>Preparamos bajo petición previa: <strong>Gazpacho manchego, arroz meloso con bogavante y piernas de cabrito</strong>.</p>
+            </section>
+        </div>
+
+        <footer class="footer">
+            <p>📞 Teléfono para encargos: <a href="tel:+34622310629">622 31 06 29</a></p>
+            <p>🏡 Terraza interior disponible</p>
+            <p><a class="social-link" href="https://www.instagram.com/bartaxi_/" target="_blank" rel="noopener noreferrer"><img class="social-icon" src="https://cdn.icon-icons.com/icons2/836/PNG/512/Instagram_icon-icons.com_66804.png" alt="Instagram">Instagram</a></p>
+            <p><a class="social-link" href="https://www.facebook.com/BarTaxiJuanito/?locale=es_ES" target="_blank" rel="noopener noreferrer"><img class="social-icon" src="https://cdn.icon-icons.com/icons2/2429/PNG/512/facebook_logo_icon_147291.png" alt="Facebook">Facebook</a></p>
+            <!-- <p class="credits">Icono Facebook logo by Gaurav Ghongde on <a href="https://icon-icons.com/es/authors/941-gaurav-ghongde" target="_blank" rel="noopener noreferrer">Icon-Icons.com</a> · Icono Instagram nuevo logo by Just UI on <a href="https://icon-icons.com/es/authors/322-just-ui" target="_blank" rel="noopener noreferrer">Icon-Icons.com</a></p> --><!-- IGNORE -->
+        </footer>
+    </main>
+</body>
+</html>
+
+
+
+
+
